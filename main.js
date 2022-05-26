@@ -1,5 +1,8 @@
 console.log("s")
 
+noseX = 0;
+noseY = 0;
+
 difference = 0;
 rightWristX = 0;
 leftWristX = 0;
@@ -19,8 +22,19 @@ function modelLoaded() {
     console.log('PoseNet is Initialized');
 }
 
+function draw() {
+    background('#D8BFD8');
+    textSize(difference);
+    fill('#FFE787');
+    text('Ad@m', 50, 400);
+}
+
 function gotPoses(results) {
     if (results.length > 0) {
         console.log(results);
+
+        leftWristX = results[0].pose.leftWrist.x;
+        rightWristX = results[0].pose.rightWrist.x;
+        difference = floor(leftWristX - rightWristX);
     }
 }
